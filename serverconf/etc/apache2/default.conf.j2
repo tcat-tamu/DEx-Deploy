@@ -1,0 +1,100 @@
+<VirtualHost *:80>
+        ServerAdmin {{ admin_email }}
+        ServerName {{ host_name }}.{{ dns_suffix }}
+
+        DocumentRoot {{ project_directory }}/web
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory {{ project_directory }}/web/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Require all granted
+        </Directory>
+
+        ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+        <Directory "/usr/lib/cgi-bin">
+                AllowOverride None
+                Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Require all granted
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    Alias /doc/ "/usr/share/doc/"
+    <Directory "/usr/share/doc/">
+        Options Indexes MultiViews FollowSymLinks
+        AllowOverride None
+        Require ip 127.0.0.0/255.0.0.0 ::1/128
+    </Directory>
+    
+#### Begin dex config
+
+    ProxyRequests Off
+    ProxyPreserveHost On
+
+    <Proxy *>
+        Require all granted
+    </Proxy>
+
+    <Location /solr/>
+        {% if solr_public == true %}
+        Require all granted
+        {% else %}      
+        Require ip 127.0.0.1 {{ docker_subnet }}
+        {% endif %}
+        ProxyPass           http://localhost:8983/solr/ retry=0
+        ProxyPassReverse    http://localhost:8983/solr/
+    </Location>
+
+    <Location /dex/>
+        Require all granted
+        ProxyPass           ajp://localhost:8009/dex/ retry=0
+        ProxyPassReverse    ajp://localhost:8009/dex/
+    </Location>   
+    
+    
+    
+    <Location /admin>
+        #AuthType basic
+        #AuthName "Authorized personnel only"
+        #AuthBasicProvider file
+        #AuthUserFile "{{ project_directory }}/dex.htpasswd"
+        #Require valid-user
+        Require all granted
+    </Location>
+
+#    <Location /tomcat-dex/>
+#        # It is recommended to enable this next line to restrict access to tomcat manager to the local subnet
+#        #Require ip {{ local_subnet }}
+#        ProxyPass                       http://localhost:8080/ retry=0
+#        ProxyPassReverse                http://localhost:8080/
+#        SetOutputFilter proxy-html
+#        ProxyHtmlURLMap ^/(.*)$                 /tomcat-dex/$1 R
+#    </Location>
+
+
+##### End dex config  
+
+    
+
+    
+{% if ssl_enabled == true %%}
+    RewriteEngine On
+
+    # force everything else to https
+    RewriteCond %{HTTPS} off
+    
+    RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L]
+{% endif %}
+
+
+
+</VirtualHost>

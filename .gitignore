@@ -1,0 +1,4 @@
+/solr/*/data/*
+!/solr/*/data/.gitkeep
+/data/tei/*
+!/data/tei/.gitkeep

@@ -25,9 +25,9 @@
     # next line needs to be in CIDR notation - used for various access restrictions (including Postgresql, Apache...)
     docker_subnet: 172.22.22.0/24
     # set this to the host name for this host - used in Apache config
-    host_name: dex
+    host_name: dexweb
     # set this to the DNS suffix of this host - used in Apache config
-    dns_suffix: test.com
+    dns_suffix: itercommunity.org
     # together the above 2 variables form the FQDN of this host - i.e. dex.test.com
     # set this to the filename of the SSL intermediate certificate
     ssl_intermediate: intermediate_cert_bundle.pem

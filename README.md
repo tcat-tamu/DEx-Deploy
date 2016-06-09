@@ -10,20 +10,20 @@ features and a [PostgreSQL 9.5 database](https://www.postgresql.org/) for its da
 
 These technologies can be maintained, configured and deployed individually. Indeed, different
 IT preferences and policies may require different choices than we have made in setting up
-this deployment repositories. But there are quite few components that need to be installed, 
+this deployment repository. But there are quite few components that need to be installed, 
 configured, and started. This repository contains a number of scripts and resources to help 
 make the deployment process easier for one common configuration - deployment on a standalone
 VM running Ubuntu 14.04.     
 
 Prerequisites
 =============
-This deployment process is designed have minimal prerequisites. It assumes that you have
-access to a server (virutal machine) with a freshly installed copy of 
+This deployment process is designed to have minimal prerequisites. It assumes that you have
+access to a server (virtual machine) with a freshly installed copy of 
 [Ubuntu 14.0.4](http://www.ubuntu.com/), and that you have SUDO privileges. This will 
 likely work with newer versions of Ubuntu, but has only been tested with 14.04. 
 
-The deployment process relies on [Ansible](https://www.ansible.com/) to script to build 
-and configure [Docker](https://www.docker.com/) containers that will run the application.
+The deployment process relies on [Ansible](https://www.ansible.com/) to automate the prerequisites needed and to 
+build and configure [Docker](https://www.docker.com/) containers that will run the application.
 You should be able to follow the installation procedure below with a basic familiarity with
 Linux administration, but understanding Ansible and Docker may be helpful for maintenance 
 and troubleshooting.
@@ -42,7 +42,7 @@ sudo su -
 ```
 
 The first step is to install git and Ansible to bootstrap this process. The Ansible 
-deployment scripts will take care of installing most of what you need (things like 
+deployment playbook will take care of installing most of what you need (things like 
 Solr, PostgresSQL, Tomcat, Java, etc) so this is all that you will need to install 
 manually.  
 
@@ -58,7 +58,7 @@ aptitude install ansible
 
 Next, you will need to create the main project directory and clone the contents of 
 this repository. Once that's in place, navigate into the base directory for the Ansible
-deployment scripts.
+deployment playbooks.
  
 ```
 mkdir -p /dex
@@ -111,7 +111,10 @@ container the main `/dex` directory is mapped as `/war-deployment`.
 
 Finally, now that the application has been configured, the final step is to run the Ansible
 playbook. This will take some time as Ansible downloads the various dependencies and builds
-the Docker containers. Once this has completed, the DEx application will be up and running.
+the Docker containers. Please note that the steps that build the Docker containers can take 
+up to 15 minutes to complete, depending on the server being used, and give no visual indication
+of progress. Also, do not worry if you see any errors during the playbook execution, as long
+as they don't stop playback. Once this has completed, the DEx application will be up and running.
 
 ```
 ansible-playbook setup_dex.yml -c local

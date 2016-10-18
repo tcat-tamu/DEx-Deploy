@@ -344,6 +344,32 @@ root: root
 })();
 })();
 
+(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["manuscripts/del_mss_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+output += "<a href=\"#";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += " <small class=\"text-muted mss\">(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ")</small></a>\n<a href=\"#delete_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"><i class=\"glyphicon glyphicon-trash remove\"></i></a>\n";
+cb(null, output);
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
+})();
+})();
+
 (function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["manuscripts/list_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
 var lineno = null;
 var colno = null;
@@ -399,6 +425,143 @@ output += "</dd>\n   ";
 ;
 }
 output += "\n</dl>\n";
+cb(null, output);
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
+})();
+})();
+
+(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["plays/list_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+output += "<a href=\"#";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += " <small class=\"text-muted\">(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ")</small></a>\n";
+cb(null, output);
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
+})();
+})();
+
+(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["plays/play.html"] = (function() {function root(env, context, frame, runtime, cb) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+output += "<div class=\"page-header\">\n   <h2>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "</h2>\n</div>\n\n<dl class=\"dl-horizontal\">\n   <dt>Playwright(s)</dt>\n   ";
+frame = frame.push();
+var t_3 = runtime.contextOrFrameLookup(context, frame, "playwrights");
+if(t_3) {var t_2 = t_3.length;
+for(var t_1=0; t_1 < t_3.length; t_1++) {
+var t_4 = t_3[t_1];
+frame.set("pw", t_4);
+frame.set("loop.index", t_1 + 1);
+frame.set("loop.index0", t_1);
+frame.set("loop.revindex", t_2 - t_1);
+frame.set("loop.revindex0", t_2 - t_1 - 1);
+frame.set("loop.first", t_1 === 0);
+frame.set("loop.last", t_1 === t_2 - 1);
+frame.set("loop.length", t_2);
+output += "\n      <dd><a href=\"browse-playwright.html#pws/";
+output += runtime.suppressValue(runtime.memberLookup((t_4),"id", env.opts.autoescape), env.opts.autoescape);
+output += "\">";
+output += runtime.suppressValue(runtime.memberLookup((t_4),"name", env.opts.autoescape), env.opts.autoescape);
+output += "</a></dd>\n   ";
+;
+}
+}
+frame = frame.pop();
+output += "\n</dl>\n";
+cb(null, output);
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
+})();
+})();
+
+(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["playwrights/list_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+output += "<a href=\"#";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += " <small class=\"text-muted\">(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ")</small></a>\n";
+cb(null, output);
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
+})();
+})();
+
+(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["playwrights/playwright.html"] = (function() {function root(env, context, frame, runtime, cb) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+output += "<div class=\"page-header\">\n   <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "names")),0, env.opts.autoescape), env.opts.autoescape);
+output += "</h2>\n</div>\n\n";
+if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "names")) > 1) {
+output += "\n   <dl class=\"horizontal\">\n      <dt>Also known as</dt>\n      ";
+frame = frame.push();
+var t_3 = (lineno = 7, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "names"))]));
+if(t_3) {var t_2 = t_3.length;
+for(var t_1=0; t_1 < t_3.length; t_1++) {
+var t_4 = t_3[t_1];
+frame.set("i", t_4);
+frame.set("loop.index", t_1 + 1);
+frame.set("loop.index0", t_1);
+frame.set("loop.revindex", t_2 - t_1);
+frame.set("loop.revindex0", t_2 - t_1 - 1);
+frame.set("loop.first", t_1 === 0);
+frame.set("loop.last", t_1 === t_2 - 1);
+frame.set("loop.length", t_2);
+output += "\n         <dd>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "names")),t_4, env.opts.autoescape), env.opts.autoescape);
+output += "</dd>\n      ";
+;
+}
+}
+frame = frame.pop();
+output += "\n   </dl>\n";
+;
+}
+output += "\n";
 cb(null, output);
 ;
 } catch (e) {
@@ -614,143 +777,6 @@ var colno = null;
 var output = "";
 try {
 output += "<div class=\"row\">\n   <div class=\"col-md-4\">\n      <div class=\"form\"></div>\n      <div class=\"facets\"></div>\n   </div>\n   <div class=\"col-md-8\">\n      <div class=\"meta-content\"></div>\n      <div class=\"text-right toolbar\">\n         <nav class=\"pagination pagination-top\"></nav>\n         <div class=\"btn-group\" role=\"group\" aria-label=\"manuscript display text\">\n            <button type=\"button\" class=\"btn btn-default show-normalized active\">Normalized</button>\n            <button type=\"button\" class=\"btn btn-default show-original\">Original</button>\n         </div>\n         <span class=\"select-num-results\">\n           <div class=\"btn-group num-results-selector\" role=\"group\">\n             <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n               # / page\n               <span class=\"caret\"></span>\n             </button>\n             <ul class=\"dropdown-menu\">\n               <li><a data-value=\"10\" href=\"#\">10</a></li>\n               <li><a data-value=\"25\" href=\"#\">25</a></li>\n               <li><a data-value=\"50\" href=\"#\">50</a></li>\n               <li><a data-value=\"100\" href=\"#\">100</a></li>\n               <li><a data-value=\"250\" href=\"#\">250</a></li>\n               <li><a data-value=\"500\" href=\"#\">500</a></li>\n             </ul>\n           </div>\n         </span>\n      </div>\n      <div class=\"result-list show-normalized\"></div>\n      <nav class=\"pagination pagination-bottom\"> </nav>\n   </div>\n</div>\n";
-cb(null, output);
-;
-} catch (e) {
-  cb(runtime.handleError(e, lineno, colno));
-}
-}
-return {
-root: root
-};
-})();
-})();
-
-(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["plays/list_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-output += "<a href=\"#";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
-output += "\">";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
-output += " <small class=\"text-muted\">(";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
-output += ")</small></a>\n";
-cb(null, output);
-;
-} catch (e) {
-  cb(runtime.handleError(e, lineno, colno));
-}
-}
-return {
-root: root
-};
-})();
-})();
-
-(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["plays/play.html"] = (function() {function root(env, context, frame, runtime, cb) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-output += "<div class=\"page-header\">\n   <h2>";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
-output += "</h2>\n</div>\n\n<dl class=\"dl-horizontal\">\n   <dt>Playwright(s)</dt>\n   ";
-frame = frame.push();
-var t_3 = runtime.contextOrFrameLookup(context, frame, "playwrights");
-if(t_3) {var t_2 = t_3.length;
-for(var t_1=0; t_1 < t_3.length; t_1++) {
-var t_4 = t_3[t_1];
-frame.set("pw", t_4);
-frame.set("loop.index", t_1 + 1);
-frame.set("loop.index0", t_1);
-frame.set("loop.revindex", t_2 - t_1);
-frame.set("loop.revindex0", t_2 - t_1 - 1);
-frame.set("loop.first", t_1 === 0);
-frame.set("loop.last", t_1 === t_2 - 1);
-frame.set("loop.length", t_2);
-output += "\n      <dd><a href=\"browse-playwright.html#pws/";
-output += runtime.suppressValue(runtime.memberLookup((t_4),"id", env.opts.autoescape), env.opts.autoescape);
-output += "\">";
-output += runtime.suppressValue(runtime.memberLookup((t_4),"name", env.opts.autoescape), env.opts.autoescape);
-output += "</a></dd>\n   ";
-;
-}
-}
-frame = frame.pop();
-output += "\n</dl>\n";
-cb(null, output);
-;
-} catch (e) {
-  cb(runtime.handleError(e, lineno, colno));
-}
-}
-return {
-root: root
-};
-})();
-})();
-
-(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["playwrights/list_item.html"] = (function() {function root(env, context, frame, runtime, cb) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-output += "<a href=\"#";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
-output += "\">";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
-output += " <small class=\"text-muted\">(";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
-output += ")</small></a>\n";
-cb(null, output);
-;
-} catch (e) {
-  cb(runtime.handleError(e, lineno, colno));
-}
-}
-return {
-root: root
-};
-})();
-})();
-
-(function() {(window.nunjucksPrecompiled = window.nunjucksPrecompiled || {})["playwrights/playwright.html"] = (function() {function root(env, context, frame, runtime, cb) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-output += "<div class=\"page-header\">\n   <h2>";
-output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "names")),0, env.opts.autoescape), env.opts.autoescape);
-output += "</h2>\n</div>\n\n";
-if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "names")) > 1) {
-output += "\n   <dl class=\"horizontal\">\n      <dt>Also known as</dt>\n      ";
-frame = frame.push();
-var t_3 = (lineno = 7, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "names"))]));
-if(t_3) {var t_2 = t_3.length;
-for(var t_1=0; t_1 < t_3.length; t_1++) {
-var t_4 = t_3[t_1];
-frame.set("i", t_4);
-frame.set("loop.index", t_1 + 1);
-frame.set("loop.index0", t_1);
-frame.set("loop.revindex", t_2 - t_1);
-frame.set("loop.revindex0", t_2 - t_1 - 1);
-frame.set("loop.first", t_1 === 0);
-frame.set("loop.last", t_1 === t_2 - 1);
-frame.set("loop.length", t_2);
-output += "\n         <dd>";
-output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "names")),t_4, env.opts.autoescape), env.opts.autoescape);
-output += "</dd>\n      ";
-;
-}
-}
-frame = frame.pop();
-output += "\n   </dl>\n";
-;
-}
-output += "\n";
 cb(null, output);
 ;
 } catch (e) {

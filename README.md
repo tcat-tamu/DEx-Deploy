@@ -102,7 +102,7 @@ There are two main properties that need to be edited in this file.
    server (the same values supplied for `host_name` and `dns_duffix` above with a path 
    of `/solr/` (note that the trailing slash is required). Solr will be run from within 
    its own Docker container, and the Ansible playbook will configure Apache to route 
-   requests to this URL appropriately (although, not that only requests originating from
+   requests to this URL appropriately (although, note that only requests originating from
    this server will be allowed unless `solr_public` has been set to `true`.
    
 The other configuration properties should work as configured. Note that these paths are 

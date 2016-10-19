@@ -193,12 +193,12 @@
     - name: update grub
       command: /usr/sbin/update-grub
       when: docker_installed.changed
-    - name: install dependency for ansible to manipulate docker
-      pip: name={{ item }}
+    - name: install docker-py dependency for ansible to manipulate docker
+      pip: name=docker-py version=1.9.0
       ignore_errors: yes
-      with_items:
-      - docker-py
-      - requests
+    - name: install requests dependency for ansible to manipulate docker
+      pip: name=requests
+      ignore_errors: yes
     - name: check to see docker managed bridge is setup correctly
       shell: "/bin/grep -q bip={{ docker_bridge_ip }} /etc/default/{{ docker_filename }} && echo 'True' || echo 'False'"
       register: docker_bipset
